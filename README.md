@@ -6,6 +6,22 @@ Check It Off is a Java application for tracking assignments, exams, due dates, a
 <img width="471" height="367" alt="image" src="https://github.com/user-attachments/assets/96b110d1-298b-4ae6-a296-aa117db3304b" />
 
 ## Authors
+## Authors
+
+| File | Author |
+|---|---|
+| `LinkedChain.java` | CS 2114 Staff |
+| `LinkedChainTest.java` | TBD |
+| `Task.java` | TBD |
+| `TaskTest.java` | TBD |
+| `Assignment.java` | TBD |
+| `AssignmentTest.java` | TBD |
+| `Exam.java` | TBD |
+| `ExamTest.java` | TBD |
+| `TaskManager.java` | TBD |
+| `TaskManagerTest.java` | TBD |
+| `CheckItOffApp.java` | TBD |
+| `CheckItOffAppTest.java` | TBD |
 
 ## Features
 
