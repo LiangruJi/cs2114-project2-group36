@@ -56,10 +56,10 @@ We still have to finalize the task, assignment and exam classes and confirm that
 | `LinkedChainTest.java` | Nishitha Kancharla |Created tests for the staff-provided storage operations; GenAI assisted in developing test cases for insertion, removal, searching, and invalid inputs.
 | `Task.java` | Nishitha Kancharla |Implemented shared task fields, input validation, getters, equality, and text output; GenAI assisted in creating and reviewing these methods.
 | `TaskTest.java` | Nishitha Kancharla |Created tests for shared task behavior using Assignment and Exam objects; GenAI assisted in developing validation, equality, and output test cases.
-| `Assignment.java` | Liangru Ji |
-| `AssignmentTest.java` | Liangru Ji |
-| `Exam.java` | Liangru Ji |
-| `ExamTest.java` | Liangru Ji |
+| `Assignment.java` | Liangru Ji |Implemented the assignment task type, including estimated hours and grade percentage validation.|
+| `AssignmentTest.java` | Liangru Ji |Creat test for  Assignment constructor, getters, boundary values, and invalid inputs.|
+| `Exam.java` | Liangru Ji |Implemented the exam task type, including study-day validation.|
+| `ExamTest.java` | Liangru Ji |Creat test for the Exam constructor, getter, boundary values, and invalid inputs.|
 | `TaskManager.java` | Sydney Yang  | Implemented the storage operations, duplicate checking, task counting and report; GenAI assisted in creating the reports (urgency and course)
 | `TaskManagerTest.java` | Sydney Yang | Developed tests for adding, removing, finding and reporting tasks; GenAI assisted in cleaning up code and figuring out what tests should run 
 | `CheckItOffApp.java` | Sydney Yang | Implemented the main application including the menu, user input and functions to add, remove, and view reports. GenAI was used in refining the application. 
