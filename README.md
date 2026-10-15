@@ -29,7 +29,7 @@ We still have to finalize the task, assignment and exam classes and confirm that
 | `ExamTest.java` | Liangru Ji |
 | `TaskManager.java` | Sydney Yang  | Implemented the storage operations, duplicate checking, task counting and report; GenAI assisted in creating the reports (urgency and course)
 | `TaskManagerTest.java` | Sydney Yang | Developed tests for adding, removing, finding and reporting tasks; GenAI assisted in cleaning up code and figuring out what tests should run 
-| `CheckItOffApp.java` | TBD |
-| `CheckItOffAppTest.java` | TBD |
+| `CheckItOffApp.java` | Sydney Yang | Implemented the main application including the menu, user input and functions to add, remove, and view reports. GenAI was used in refining the application. 
+| `CheckItOffAppTest.java` | Sydney Yang | Developed tests for the application and task management, and GenAI was used to help construct the tests and debug.
 
 ## GenAI Note
