@@ -51,7 +51,7 @@ We still have to finalize the task, assignment and exam classes and confirm that
 ## Attribution
 
 | File | Author | Contribution |
-|---|---|
+|---|---|---|
 | `LinkedChain.java` | CS 2114 Staff |
 | `LinkedChainTest.java` | TBD |
 | `Task.java` | Nishitha Kancharla |
