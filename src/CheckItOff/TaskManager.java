@@ -103,7 +103,7 @@ public class TaskManager
     {
         if (today == null)
         {
-            throw new IllegalArgumetException("Date cannot be null");
+            throw new IllegalArgumentException("Date cannot be null");
         }
         if (tasks.isEmpty())
         {
@@ -215,7 +215,7 @@ public class TaskManager
         }
         StringBuilder result = new StringBuilder();
 
-        for (int i = 0; i < task.size(); i++)
+        for (int i = 0; i < tasks.size(); i++)
         {
             result.append(tasks.get(i)).append("\n");
         }
