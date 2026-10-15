@@ -53,9 +53,9 @@ We still have to finalize the task, assignment and exam classes and confirm that
 | File | Author | Contribution |
 |---|---|---|
 | `LinkedChain.java` | CS 2114 Staff |
-| `LinkedChainTest.java` | TBD |
-| `Task.java` | Nishitha Kancharla |
-| `TaskTest.java` | Nishitha Kancharla |
+| `LinkedChainTest.java` | Nishitha Kancharla |Created tests for the staff-provided storage operations; GenAI assisted in developing test cases for insertion, removal, searching, and invalid inputs.
+| `Task.java` | Nishitha Kancharla |Implemented shared task fields, input validation, getters, equality, and text output; GenAI assisted in creating and reviewing these methods.
+| `TaskTest.java` | Nishitha Kancharla |Created tests for shared task behavior using Assignment and Exam objects; GenAI assisted in developing validation, equality, and output test cases.
 | `Assignment.java` | Liangru Ji |
 | `AssignmentTest.java` | Liangru Ji |
 | `Exam.java` | Liangru Ji |
