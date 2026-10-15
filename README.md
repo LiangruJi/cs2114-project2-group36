@@ -18,8 +18,8 @@ We still have to finalize the task, assignment and exam classes and confirm that
 |---|---|
 | `LinkedChain.java` | CS 2114 Staff |
 | `LinkedChainTest.java` | TBD |
-| `Task.java` | TBD |
-| `TaskTest.java` | TBD |
+| `Task.java` | Nishitha Kancharla |
+| `TaskTest.java` | Nishitha Kancharla |
 | `Assignment.java` | Liangru Ji |
 | `AssignmentTest.java` | Liangru Ji |
 | `Exam.java` | Liangru Ji |
