@@ -1,56 +1,65 @@
 package CheckItOff;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.io.PrintStream;
+
 /**
  * // -------------------------------------------------------------------------
-/**
- * Application for managing assignments and exams.
- * Allows users to add, remove, and view task reports.
+ * /** Application for managing assignments and exams. Allows users to add,
+ * remove, and view task reports.
  * 
- *  @author sydneyyang
- *  @version Oct 15, 2026
+ * @author sydneyyang
+ * @version Oct 15, 2026
  */
 public class CheckItOffApp
 {
     private TaskManager manager;
     private Scanner input;
     private PrintStream output;
-    
+
     /**
      * Creates a new application with an empty task manager
      */
-    public CheckItOffApp() {
+    public CheckItOffApp()
+    {
         this(new Scanner(System.in), System.out);
     }
+
+
     /**
      * Creates an application with input and output streams
      *
-     * @param inputScanner scanner used for input
-     * @param outputStream stream used for output
+     * @param inputScanner
+     *            scanner used for input
+     * @param outputStream
+     *            stream used for output
      */
-    public CheckItOffApp(
-        Scanner inputScanner,
-        PrintStream outputStream) {
+    public CheckItOffApp(Scanner inputScanner, PrintStream outputStream)
+    {
 
         manager = new TaskManager();
         input = inputScanner;
         output = outputStream;
     }
 
+
     /**
      * Runs the menu until the user chooses to quit
      */
-    public void run() {
+    public void run()
+    {
         boolean running = true;
 
-        while (running) {
+        while (running)
+        {
             displayMenu();
 
             String choice = input.nextLine().trim();
 
-            switch (choice) {
+            switch (choice)
+            {
                 case "1":
                     handleAdd();
                     break;
@@ -68,35 +77,50 @@ public class CheckItOffApp
                     break;
 
                 case "5":
-                    output.println("Goodbye!");
-                    running = false;
+                    handleCompletion(true);
                     break;
 
-                default:
-                    output.println("Invalid option. Try again.");
+                case "6":
+                    handleCompletion(false);
+                    break;
+
+                case "7":
+                    output.println(manager.generateCompletionReport());
+                    break;
+
+                case "8":
+                    output.println("Goodbye!");
+                    running = false;
                     break;
             }
         }
     }
 
+
     /**
      * Displays the menu options
      */
-    public void displayMenu() {
+    public void displayMenu()
+    {
         output.println();
         output.println("===== Check It Off! =====");
         output.println("1. Add Task");
         output.println("2. Remove Task");
         output.println("3. Urgency Report");
         output.println("4. Course Breakdown");
-        output.println("5. Quit");
+        output.println("5. Mark Task Completed");
+        output.println("6. Mark Task Pending");
+        output.println("7. Completion Report");
+        output.println("8. Quit");
         output.print("Choose an option: ");
     }
+
 
     /**
      * Collects task information and adds it to the manager
      */
-    public void handleAdd() {
+    public void handleAdd()
+    {
         output.println("1. Assignment");
         output.println("2. Exam");
 
@@ -108,18 +132,18 @@ public class CheckItOffApp
 
         Task task;
 
-        if (type.equals("1")) {
+        if (type.equals("1"))
+        {
             // get additional information for an assignment
-            double hours = readNonNegativeDouble(
-                "Estimated hours: ");
+            double hours = readNonNegativeDouble("Estimated hours: ");
 
-            double percentage = readGradePercentage(
-                "Grade percentage (0-100): ");
+            double percentage =
+                readGradePercentage("Grade percentage (0-100): ");
 
-            task = new Assignment(
-                course, title, dueDate, hours, percentage);
+            task = new Assignment(course, title, dueDate, hours, percentage);
         }
-        else {
+        else
+        {
             // get number of study days for an exam
             int days = readPositiveInt("Study days: ");
 
@@ -127,19 +151,24 @@ public class CheckItOffApp
         }
 
         // check if the task was added successfully
-        if (manager.addTask(task)) {
+        if (manager.addTask(task))
+        {
             output.println("Task added successfully!");
         }
-        else {
+        else
+        {
             output.println("Task already exists.");
         }
     }
 
+
     /**
-     * Removes a duplicate task 
+     * Removes a duplicate task
      */
-    public void handleRemove() {
-        if (manager.getTaskCount() == 0) {
+    public void handleRemove()
+    {
+        if (manager.getTaskCount() == 0)
+        {
             output.println("No tasks to remove.");
             return;
         }
@@ -157,50 +186,60 @@ public class CheckItOffApp
         Task task;
 
         // create a matching task to find and remove
-        if (type.equals("1")) {
-            task = new Assignment(
-                course, title, dueDate, 0, 0);
+        if (type.equals("1"))
+        {
+            task = new Assignment(course, title, dueDate, 0, 0);
         }
-        else {
+        else
+        {
             task = new Exam(course, title, dueDate, 1);
         }
 
-        if (manager.removeTask(task)) {
+        if (manager.removeTask(task))
+        {
             output.println("Task removed successfully!");
         }
-        else {
+        else
+        {
             output.println("Task not found.");
         }
     }
 
+
     /**
      * Displays tasks grouped by urgency
      */
-    public void handleUrgencyReport() {
+    public void handleUrgencyReport()
+    {
         // use today's date to determine urgency
-        output.println(
-            manager.generateUrgencyReport(LocalDate.now()));
+        output.println(manager.generateUrgencyReport(LocalDate.now()));
     }
+
 
     /**
      * Displays the number of tasks for each course.
      */
-    public void handleCourseReport() {
+    public void handleCourseReport()
+    {
         output.println(manager.generateCourseReport());
     }
+
 
     /**
      * Reads an assignment or exam selection.
      *
      * @return valid task type
      */
-    private String readTaskType() {
-        while (true) {
+    private String readTaskType()
+    {
+        while (true)
+        {
             output.print("Choose task type (1 or 2): ");
 
             String type = input.nextLine().trim();
 
-            if (type.equals("1") || type.equals("2")) {
+            if (type.equals("1") || type.equals("2"))
+            {
                 return type;
             }
 
@@ -208,19 +247,24 @@ public class CheckItOffApp
         }
     }
 
+
     /**
      * Reads a string that cannot be empty
      *
-     * @param prompt message shown to user
+     * @param prompt
+     *            message shown to user
      * @return nonempty string
      */
-    public String readNonEmptyString(String prompt) {
-        while (true) {
+    public String readNonEmptyString(String prompt)
+    {
+        while (true)
+        {
             output.print(prompt);
 
             String value = input.nextLine().trim();
 
-            if (!value.isEmpty()) {
+            if (!value.isEmpty())
+            {
                 return value;
             }
 
@@ -228,105 +272,128 @@ public class CheckItOffApp
         }
     }
 
+
     /**
      * Reads a valid date in YYYY-MM-DD format
      *
-     * @param prompt message shown to user
+     * @param prompt
+     *            message shown to user
      * @return valid date
      */
-    public LocalDate readValidDate(String prompt) {
-        while (true) {
+    public LocalDate readValidDate(String prompt)
+    {
+        while (true)
+        {
             output.print(prompt);
 
             String value = input.nextLine().trim();
 
-            try {
+            try
+            {
                 return LocalDate.parse(value);
             }
-            catch (DateTimeParseException e) {
-                output.println(
-                    "Invalid date. Use YYYY-MM-DD.");
+            catch (DateTimeParseException e)
+            {
+                output.println("Invalid date. Use YYYY-MM-DD.");
             }
         }
     }
+
 
     /**
      * Reads a number greater than or equal to zero
      *
-     * @param prompt message shown to user
+     * @param prompt
+     *            message shown to user
      * @return nonnegative number
      */
-    public double readNonNegativeDouble(String prompt) {
-        while (true) {
+    public double readNonNegativeDouble(String prompt)
+    {
+        while (true)
+        {
             output.print(prompt);
 
             String value = input.nextLine().trim();
 
-            try {
+            try
+            {
                 double number = Double.parseDouble(value);
 
-                if (Double.isFinite(number) && number >= 0) {
+                if (Double.isFinite(number) && number >= 0)
+                {
                     return number;
                 }
             }
-            catch (NumberFormatException e) {
+            catch (NumberFormatException e)
+            {
                 // invalid input will be requested again
             }
 
-            output.println(
-                "Enter a valid nonnegative number.");
+            output.println("Enter a valid nonnegative number.");
         }
     }
+
 
     /**
      * Reads a grade percentage between 0 and 100
      *
-     * @param prompt message shown to user
+     * @param prompt
+     *            message shown to user
      * @return valid grade percentage
      */
-    public double readGradePercentage(String prompt) {
-        while (true) {
+    public double readGradePercentage(String prompt)
+    {
+        while (true)
+        {
             output.print(prompt);
 
             String value = input.nextLine().trim();
 
-            try {
+            try
+            {
                 double number = Double.parseDouble(value);
 
-                if (Double.isFinite(number)
-                    && number >= 0 && number <= 100) {
+                if (Double.isFinite(number) && number >= 0 && number <= 100)
+                {
                     return number;
                 }
             }
-            catch (NumberFormatException e) {
+            catch (NumberFormatException e)
+            {
                 // invalid input will be requested again
             }
 
-            output.println(
-                "Enter a percentage between 0 and 100.");
+            output.println("Enter a percentage between 0 and 100.");
         }
     }
+
 
     /**
      * Reads a number for exam study days
      *
-     * @param prompt message shown to user
+     * @param prompt
+     *            message shown to user
      * @return positive integer
      */
-    public int readPositiveInt(String prompt) {
-        while (true) {
+    public int readPositiveInt(String prompt)
+    {
+        while (true)
+        {
             output.print(prompt);
 
             String value = input.nextLine().trim();
 
-            try {
+            try
+            {
                 int number = Integer.parseInt(value);
 
-                if (number > 0) {
+                if (number > 0)
+                {
                     return number;
                 }
             }
-            catch (NumberFormatException e) {
+            catch (NumberFormatException e)
+            {
                 // invalid input will be requested again
             }
 
@@ -334,13 +401,74 @@ public class CheckItOffApp
         }
     }
 
+
     /**
      * Starts the Check It Off application
      *
-     * @param args command line arguments
+     * @param args
+     *            command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         CheckItOffApp app = new CheckItOffApp();
         app.run();
+    }
+    /**
+     * Updates the completion status of a task.
+     *
+     * @param completed
+     *            true to complete, false to mark pending
+     */
+    public void handleCompletion(boolean completed)
+    {
+        if (manager.getTaskCount() == 0)
+        {
+            output.println("No tasks are tracked.");
+            return;
+        }
+
+        output.println(manager.getAllTasks());
+
+        output.println("1. Assignment");
+        output.println("2. Exam");
+
+        String type = readTaskType();
+
+        String course = readNonEmptyString("Course: ");
+        String title = readNonEmptyString("Title: ");
+        LocalDate dueDate =
+            readValidDate("Due date (YYYY-MM-DD): ");
+
+        Task task;
+
+        if (type.equals("1"))
+        {
+            task = new Assignment(
+                course, title, dueDate, 0, 0);
+        }
+        else
+        {
+            task = new Exam(course, title, dueDate, 1);
+        }
+
+        boolean updated;
+
+        if (completed)
+        {
+            updated = manager.completeTask(task);
+        }
+        else
+        {
+            updated = manager.markPending(task);
+        }
+
+        if (updated)
+        {
+            output.println("Task status updated!");
+        }
+        else
+        {
+            output.println("Task not found.");
+        }
     }
 }

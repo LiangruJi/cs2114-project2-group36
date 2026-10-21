@@ -222,5 +222,108 @@ public class TaskManager
 
         return result.toString();
     }
+    /**
+     * Marks a tracked task as completed.
+     *
+     * @param task
+     *            task to complete
+     * @return true if the task was found
+     */
+    public boolean completeTask(Task task)
+    {
+        for (int i = 0; i < tasks.size(); i++)
+        {
+            Task current = tasks.get(i);
+
+            if (current.equals(task))
+            {
+                current.setCompleted(true);
+                return true;
+            }
+        }
+
+        return false;
+    }
+    /**
+     * Marks a completed task as pending.
+     *
+     * @param task
+     *            task to update
+     * @return true if the task was found
+     */
+    public boolean markPending(Task task)
+    {
+        for (int i = 0; i < tasks.size(); i++)
+        {
+            Task current = tasks.get(i);
+
+            if (current.equals(task))
+            {
+                current.setCompleted(false);
+                return true;
+            }
+        }
+
+        return false;
+    }
+    /**
+     * Generates a report separating completed
+     * and pending tasks.
+     *
+     * @return completion report
+     */
+    public String generateCompletionReport()
+    {
+        if (tasks.isEmpty())
+        {
+            return "Nothing is tracked. Add an item first.";
+        }
+
+        StringBuilder report = new StringBuilder();
+
+        report.append("Pending Tasks:\n");
+
+        int pending = 0;
+        int completed = 0;
+
+        for (int i = 0; i < tasks.size(); i++)
+        {
+            Task task = tasks.get(i);
+
+            if (!task.isCompleted())
+            {
+                report.append("- ").append(task).append("\n");
+                pending++;
+            }
+        }
+
+        if (pending == 0)
+        {
+            report.append("No pending tasks.\n");
+        }
+
+        report.append("\nCompleted Tasks:\n");
+
+        for (int i = 0; i < tasks.size(); i++)
+        {
+            Task task = tasks.get(i);
+
+            if (task.isCompleted())
+            {
+                report.append("- ").append(task).append("\n");
+                completed++;
+            }
+        }
+
+        if (completed == 0)
+        {
+            report.append("No completed tasks.\n");
+        }
+
+        report.append("\nPending: ").append(pending);
+        report.append("\nCompleted: ").append(completed);
+
+        return report.toString();
+    }
 
 }

@@ -17,6 +17,7 @@ public abstract class Task
     private final String course;
     private final String title;
     private final LocalDate dueDate;
+    private boolean completed;
 
     // ~ Constructors ..........................................................
 
@@ -54,6 +55,7 @@ public abstract class Task
         this.course = course;
         this.title = title;
         this.dueDate = dueDate;
+        this.completed = false;
     }
 
     // ~ Public Methods ........................................................
@@ -141,5 +143,26 @@ public abstract class Task
     {
         return "Course: " + course + ", Title: " + title + ", Due: "
             + dueDate;
+    }
+    /**
+     * Checks whether a task is completed.
+     *
+     * @return true if completed
+     */
+    public boolean isCompleted()
+    {
+        return completed;
+    }
+
+
+    /**
+     * Updates the completion status of a task.
+     *
+     * @param completed
+     *            true if completed, false if pending
+     */
+    public void setCompleted(boolean completed)
+    {
+        this.completed = completed;
     }
 }

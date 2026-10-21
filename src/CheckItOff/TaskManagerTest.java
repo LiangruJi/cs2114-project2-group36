@@ -232,4 +232,60 @@ public class TaskManagerTest
         assertTrue(result.contains("Project 2"));
         assertTrue(result.contains("Midterm"));
     }
+    public void testCompleteTask()
+    {
+        TaskManager manager = new TaskManager();
+
+        Task task = new Assignment(
+            "CS 2114", "Project 2",
+            LocalDate.of(2026, 10, 28), 5, 20);
+
+        manager.addTask(task);
+
+        assertTrue(manager.completeTask(task));
+        assertTrue(task.isCompleted());
+        assertEquals(1, manager.getTaskCount());
+    }
+
+
+    public void testMarkPending()
+    {
+        TaskManager manager = new TaskManager();
+
+        Task task = new Exam(
+            "STAT 3104", "Midterm",
+            LocalDate.of(2026, 11, 2), 5);
+
+        manager.addTask(task);
+        manager.completeTask(task);
+
+        assertTrue(manager.markPending(task));
+        assertFalse(task.isCompleted());
+    }
+
+
+    public void testCompletionReport()
+    {
+        TaskManager manager = new TaskManager();
+
+        Task task1 = new Assignment(
+            "CS 2114", "Project 2",
+            LocalDate.of(2026, 10, 28), 5, 20);
+
+        Task task2 = new Exam(
+            "STAT 3104", "Midterm",
+            LocalDate.of(2026, 11, 2), 5);
+
+        manager.addTask(task1);
+        manager.addTask(task2);
+
+        manager.completeTask(task1);
+
+        String report = manager.generateCompletionReport();
+
+        assertTrue(report.contains("Pending: 1"));
+        assertTrue(report.contains("Completed: 1"));
+        assertTrue(report.contains("Project 2"));
+        assertTrue(report.contains("Midterm"));
+    }
 }
